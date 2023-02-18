@@ -1,8 +1,11 @@
+
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Route, Routes } from "react-router";
 
-import "./App.css";
+import './App.css';
+
 import DoubtPage from "./pages/DoubtPage";
 import HomePage from "./pages/HomePage";
 
