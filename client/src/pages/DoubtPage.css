@@ -1,0 +1,10 @@
+.doubt-description {
+    height: auto;
+    width: 1000px;
+    overflow-y: scroll;
+    transform: translate(100px, 0px);
+    border-radius: 10px;
+    background-color: #121212;
+    color: #fff;
+    padding: 10px;
+}

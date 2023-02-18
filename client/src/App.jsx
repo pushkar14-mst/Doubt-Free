@@ -1,6 +1,9 @@
 
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Route, Routes } from "react-router";
+
 import './App.css';
 import SearchBox from './Components/SearchBox/SearchBox';
 import teacher from './images/teacher.png';
@@ -8,9 +11,27 @@ import explore from './images/explore.png'
 import learn from './images/learn.png'
 import connect from './images/connect.png'
 import glass from './images/glass.svg';
+import DoubtPage from "./pages/DoubtPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
+  const [doubts, setDoubts] = useState([]);
+  const getDoubts = async () => {
+    await axios.get("http://localhost:5000/get-doubts").then((res) => {
+      setDoubts(res.data);
+    });
+  };
+
+  useEffect(() => {
+    getDoubts();
+  }, []);
+
   return (
+    <Routes>
+      <Route path="/home" element={<HomePage doubts={doubts} />} />
+      <Route path="/doubts" />
+      <Route path="/doubts/:doubtId" element={<DoubtPage />} />
+    </Routes>
     <div className='App'>
       <header className='App-header'>
         <Container>
