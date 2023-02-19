@@ -5,7 +5,6 @@ import SearchBox from "../components/SearchBox/SearchBox";
 import { doubtsActions } from "../store/doubts-store";
 import "./HomePage.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 import teacher from "../images/teacher.png";
 import explore from "../images/explore.png";
@@ -13,6 +12,8 @@ import learn from "../images/learn.png";
 import connect from "../images/connect.png";
 import glass from "../images/glass.svg";
 import { Container, Col, Row } from "react-bootstrap";
+
+import DoubtBox from "../Components/UI/DoubtBox/DoubtBox";
 
 const HomePage = (props) => {
   const [name, setName] = useState("");
@@ -47,7 +48,7 @@ const HomePage = (props) => {
   return (
     <>
       <NavBar />
-      <section>
+      <section id="home">
         <Container>
           <Row className="hero-section">
             <Col lg={6} md={12} sm={12}>
@@ -78,7 +79,7 @@ const HomePage = (props) => {
               <img
                 src={teacher}
                 alt="Teacher Image"
-                style={{ width: "450px", height: "450px" }}
+                style={{ width: "380px", height: "380px" }}
               />
             </Col>
           </Row>
@@ -114,64 +115,51 @@ const HomePage = (props) => {
         </Container>
       </section>
 
-      <section id="add-your-doubt">
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <h1>Ask your doubt in this space</h1>
-              <div className="doubt-form">
-                <form className="form" onSubmit={submitHandler}>
-                  <label className="form-label">Enter Your Name:</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                  <label className="form-label">Your Doubt Title</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    value={doubtTitle}
-                    onChange={(e) => setDoubtTitle(e.target.value)}
-                  />
-                  <label className="form-label">Enter category</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  />
-                  <label className="form-label">Your Doubt</label>
-                  <textarea
-                    className="form-control"
-                    rows="2"
-                    cols="4"
-                    value={doubt}
-                    onChange={(e) => setDoubt(e.target.value)}
-                  />
-
-                  <button className="btn btn-secondary m-3">
-                    Post Your Doubt
-                  </button>
-                </form>
+      <section id="askdoubt">
+        <div className="container contact-form">
+          <div className="contact-image">
+            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
+          </div>
+          <form className="form" onSubmit={submitHandler}>
+            <h3>Post your doubt in this space</h3>
+            <div className="row">
+              <div className="col-md-6 ">
+                <div className="form-group m-2">
+                  <input type="text" className="form-control" placeholder="Your Name *" value={name} onChange={(e) => setName(e.target.value)} />
+                </div>
+                <div className="form-group m-2">
+                  <input type="text" className="form-control" placeholder="Your doubt in short? *" value={doubtTitle} onChange={(e) => setDoubtTitle(e.target.value)} />
+                </div>
+                <div className="form-group m-2">
+                  <input type="text" className="form-control" placeholder="Enter category *" value={category} onChange={(e) => setCategory(e.target.value)} />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <textarea className="form-control m-2" placeholder="Description of your doubt *" style={{ width: '100%', height: '130px' }} value={doubt}
+                    onChange={(e) => setDoubt(e.target.value)}></textarea>
+                </div>
+              </div>
+              <div className="form-group" >
+                <br></br>
+                <button className="btn btn-secondary m-2">
+                  Post Your Doubt
+                </button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </section>
-      <section className="latest-doubts mt-3">
-        <h1>Latest Doubts</h1>
+
+      <section className="alldoubts" id="alldoubts">
         <div className="container">
-          <div className="row">
-            {props.doubts.slice(0, 10).map((doubts) => {
+          <h1>Latest Doubts</h1>
+          <div className="row" >
+            {props.doubts.slice(0, 5).map((doubts) => {
               return (
-                <div className="col-lg-12 doubt-card">
-                  <Link to={`/doubts/${doubts._id}`}>
-                    <h2>{doubts.doubtTitle}</h2>
-                  </Link>
-                  <h4>asked by {doubts.name}</h4>
-                </div>
+                <>
+                  <DoubtBox id={doubts._id} doubtTitle={doubts.doubtTitle} doubtAuthor={doubts.name}/>
+                </>
               );
             })}
           </div>
