@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import doubtsSlice from "./doubts-store";
+import doubtsSlice, { commentsSlice } from "./doubts-store";
 
 const store = configureStore({
   reducer: {
     doubts: doubtsSlice.reducer,
+    comments: commentsSlice.reducer,
   },
 });
 

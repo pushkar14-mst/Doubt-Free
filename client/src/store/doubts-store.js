@@ -19,5 +19,23 @@ const doubtsSlice = createSlice({
   },
 });
 
+export const commentsSlice = createSlice({
+  name: "comments",
+  initialState: {
+    name: "",
+    comment: "",
+    doubtId: "",
+  },
+  reducers: {
+    addComments(state, action) {
+      state.name = action.payload.name;
+      state.comment = action.payload.comment;
+      state.doubtId = action.payload.doubtId;
+      console.log(action.payload);
+    },
+  },
+});
+export const commentsActions = commentsSlice.actions;
+
 export const doubtsActions = doubtsSlice.actions;
 export default doubtsSlice;

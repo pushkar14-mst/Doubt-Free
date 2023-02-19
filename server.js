@@ -21,6 +21,7 @@ const doubtsSchema = new mongoose.Schema({
   category: { type: String },
   doubt: { type: String },
   dateCreated: { type: Date },
+  comments: { type: Array },
 });
 
 const Doubts = mongoose.model("Doubts", doubtsSchema);
@@ -44,6 +45,23 @@ app.post("/add-doubt", async (req, res) => {
     console.log(createdDoubt);
   } catch (error) {
     console.log(error);
+  }
+});
+
+app.post("/add-comment", async (req, res) => {
+  const name = req.body.name;
+  const comment = req.body.comment;
+  const doubtId = req.body.doubtId;
+
+  try {
+    await Doubts.updateOne(
+      { _id: doubtId },
+      { $push: { comments: { name, comment } } }
+    ).then((res) => {
+      console.log(res);
+    });
+  } catch (error) {
+    console.log(err);
   }
 });
 

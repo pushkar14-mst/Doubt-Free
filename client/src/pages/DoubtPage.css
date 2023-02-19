@@ -1,10 +1,51 @@
 .doubt-description {
     height: auto;
     width: 1000px;
-    overflow-y: scroll;
+
     transform: translate(100px, 0px);
     border-radius: 10px;
     background-color: #121212;
     color: #fff;
     padding: 10px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.comments-box {
+    border-radius: 24px;
+    background-color: #121212;
+    padding: 18px;
+    color: #fff;
+    text-align: left;
+    margin-bottom: 20px;
+    width: 1000px;
+}
+
+.comments-box p {
+    font-size: 24px;
+}
+
+.add-comment-btn1 {
+    border-radius: 24px;
+    background-color: #121212;
+    color: #ffffff;
+    font-weight: bolder;
+}
+
+.add-comment-btn2 {
+    border-radius: 24px;
+    background-color: #ffffff;
+    color: #121212;
+    font-weight: bolder;
+}
+
+.comment-form {
+    border-radius: 24px;
+    width: 600px;
+    font-size: 24px;
+    text-align: left;
+    background: #121212;
+    color: #fff;
+    padding: 18px;
+    transform: translate(50%, 0);
 }
